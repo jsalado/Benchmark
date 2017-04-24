@@ -59,6 +59,8 @@ import org.owasp.benchmark.score.parsers.Counter;
 import org.owasp.benchmark.score.parsers.CoverityReader;
 import org.owasp.benchmark.score.parsers.FindbugsReader;
 import org.owasp.benchmark.score.parsers.FortifyReader;
+import org.owasp.benchmark.score.parsers.KiuwanCSVReader;
+import org.owasp.benchmark.score.parsers.KiuwanXMLReader;
 import org.owasp.benchmark.score.parsers.NoisyCricketReader;
 import org.owasp.benchmark.score.parsers.OverallResult;
 import org.owasp.benchmark.score.parsers.OverallResults;
@@ -627,6 +629,12 @@ public class BenchmarkScore {
                 tr = new SourceMeterReader().parse( fileToParse );
             }
         }
+        else if ( filename.endsWith( ".csv" ) ) {
+            String line1 = getLine( fileToParse, 0 );
+            if ( line1.startsWith( "Rule" ) ) {
+                tr = new KiuwanCSVReader().parse( fileToParse );
+            }
+        }
 		else if ( filename.endsWith( ".xml" ) ) {
             String line1 = getLine( fileToParse, 0 );
             String line2 = getLine( fileToParse, 1 );
@@ -669,6 +677,10 @@ public class BenchmarkScore {
             
             else if ( line2.startsWith( "<report")) {
                 tr = new ArachniReader().parse( fileToParse );
+            }
+		    
+            else if ( line2.startsWith( "<Report")) {
+                tr = new KiuwanXMLReader().parse( fileToParse );
             }
 		    
             else {

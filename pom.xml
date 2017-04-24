@@ -651,6 +651,12 @@
 		</dependency>
 
 		<dependency>
+		    <groupId>com.opencsv</groupId>
+		    <artifactId>opencsv</artifactId>
+		    <version>3.8</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.directory.server</groupId>
 			<artifactId>apacheds-all</artifactId>
 			<version>1.5.7</version>

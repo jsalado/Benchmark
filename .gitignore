@@ -211,6 +211,8 @@ var/
 sdist/
 develop-eggs/
 .installed.cfg
+scorecard*/
+results/*.csv*
 
 # Installer logs
 pip-log.txt
